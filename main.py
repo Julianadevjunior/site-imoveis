@@ -18,10 +18,10 @@ infs_bto = st.button(label='Informações', use_container_width=True)
 if infs_bto:
       infs = page_form()
       st.session_state.form = infs
-      email(nome=st.session_state['form'], telefone=infs['telefone'][0], casa=infs['casa'][0], apto=infs['apto'][0],
+      email(nome=infs['nome'][0], telefone=infs['telefone'][0], casa=infs['casa'][0], apto=infs['apto'][0],
             quartos=infs['quartos'][0], vagas=infs['vagas'][0],
             bairro=infs['bairro'][0], permuta=infs['permuta'][0], vista=infs['vista'][0],
-            financiamento=infs['financimento'][0])
+            financiamento=f'{st.session_state.form}')
 
 st.markdown("[Outros imóveis](https://www.instagram.com/corretorfelipecarlos/reels/)", unsafe_allow_html=True)
 
