@@ -11,11 +11,14 @@ tree_link = 'https://linktr.ee/imoveisfelipecarlos'
 st.header('Como podemos te ajudar? ', divider='grey')
 
 st.markdown("[Visita](https://wa.me/13974242919)", unsafe_allow_html=True)
+if 'form' not in st.session_state:
+      st.session_state.form = []
 
 infs_bto = st.button(label='Informações', use_container_width=True)
 if infs_bto:
       infs = page_form()
-      email(nome=infs['nome'][0], telefone=infs['telefone'][0], casa=infs['casa'][0], apto=infs['apto'][0],
+      st.session_state.form = infs
+      email(nome=st.session_state.form, telefone=infs['telefone'][0], casa=infs['casa'][0], apto=infs['apto'][0],
             quartos=infs['quartos'][0], vagas=infs['vagas'][0],
             bairro=infs['bairro'][0], permuta=infs['permuta'][0], vista=infs['vista'][0],
             financiamento=infs['financimento'][0])
