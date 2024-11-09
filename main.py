@@ -103,3 +103,5 @@ def enviar_email():
         st.success("E-mail enviado com sucesso!")
     except Exception as e:
         st.error(f"Erro ao enviar e-mail: {e}")
+
+page_form()
