@@ -3,12 +3,40 @@ import webbrowser
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from funcao import page_form, email
+from teste import page_form
+
 
 url = 'https://wa.me/13974242919'
 insta_link = 'https://www.instagram.com/corretorfelipecarlos/reels/'
 tree_link = 'https://linktr.ee/imoveisfelipecarlos'
 st.header('Como podemos te ajudar? ', divider='grey')
+
+def email(nome='', telefone='', casa='', apto='', quartos='', vagas='', bairro='', permuta='', vista='', financiamento=''):
+    # Configurações de e-mail
+    sender_email = "jucarlos.jv@gmail.com"
+    receiver_email = "jucarlos.jv@gmail.com"
+    password = "qdhq khui gfuz hhci"
+
+    def enviar_email(mensagem):
+        msg = MIMEMultipart()
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+        msg['Subject'] = "Novo formulário preenchido"
+        msg.attach(MIMEText(mensagem, 'plain'))
+
+        # Enviando o e-mail
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, msg.as_string())
+
+    # Chame a função ao final do preenchimento do formulário
+    enviar_email(f'''Uma nova resposta foi enviada no formulário!
+    Nome:{nome}, telefone:{telefone}
+    Casa:{casa}, Apto: {apto}
+    Quatos:{quartos}, vagas: {vagas}
+    Bairro: {bairro}, permuta:{permuta}, à vista:{vista}, financiamento:{financiamento}
+    ''')
+
 
 st.markdown("[Visita](https://wa.me/13974242919)", unsafe_allow_html=True)
 if 'form' not in st.session_state:
