@@ -11,8 +11,7 @@ tree_link = 'https://linktr.ee/imoveisfelipecarlos'
 st.header('Como podemos te ajudar? ', divider='grey')
 
 visita_bto = st.button(label='Visita', use_container_width=True)
-if visita_bto:
-      webbrowser.open_new_tab(url)
+st.markdown("[Visita](https://wa.me/13974242919)", unsafe_allow_html=True)
 
 infs_bto = st.button(label='Informações', use_container_width=True)
 if infs_bto:
