@@ -76,9 +76,9 @@ def enviar_email():
     financiamento = st.session_state.get('financiamento', False)
 
     # Configurações de e-mail
-    sender_email = "seu_email@gmail.com"
-    receiver_email = "destinatario@gmail.com"
-    password = "sua_senha"
+    sender_email = "jucarlos.jv@gmail.com"
+    receiver_email = "jucarlos.jv@gmail.com"
+    password = "qdhq khui gfuz hhci"
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
