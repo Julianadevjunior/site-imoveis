@@ -10,7 +10,7 @@ insta_link = 'https://www.instagram.com/corretorfelipecarlos/reels/'
 tree_link = 'https://linktr.ee/imoveisfelipecarlos'
 st.header('Como podemos te ajudar? ', divider='grey')
 
-st.markdown("[Visita](https://wa.me/13974242919)", unsafe_allow_html=True, body=True)
+st.markdown("[Visita](https://wa.me/13974242919)", unsafe_allow_html=True)
 
 infs_bto = st.button(label='Informações', use_container_width=True)
 if infs_bto:
@@ -20,7 +20,7 @@ if infs_bto:
             bairro=infs['bairro'][0], permuta=infs['permuta'][0], vista=infs['vista'][0],
             financiamento=infs['financimento'][0])
 
-st.markdown("[Outros imóveis](https://www.instagram.com/corretorfelipecarlos/reels/)", unsafe_allow_html=True, body=True)
+st.markdown("[Outros imóveis](https://www.instagram.com/corretorfelipecarlos/reels/)", unsafe_allow_html=True)
 
-st.markdown("[Contatos](https://linktr.ee/imoveisfelipecarlos)", unsafe_allow_html=True, body=True)
+st.markdown("[Contatos](https://linktr.ee/imoveisfelipecarlos)", unsafe_allow_html=True)
 
