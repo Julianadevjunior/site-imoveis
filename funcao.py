@@ -19,35 +19,6 @@ def page_init():
         webbrowser.open_new_tab(insta_link)
     redes = st.button(label='Contatos', icon='📲')
 
-
-def page_form():
-    st.header('Informação sobre outros imóveis', divider='grey')
-    form = st.form(key='form', clear_on_submit=True)
-
-    with form:
-        st.session_state['nome'] = st.text_input(label='Nome', placeholder='Nome')
-        st.session_state['telefone'] = st.text_input(label='Telefone', placeholder='Telefone')
-
-        # Salve os dados no st.session_state conforme são preenchidos
-        st.session_state['apto'] = st.checkbox('Apartamento')
-        st.session_state['casa'] = st.checkbox('Casa')
-        st.session_state['quartos'] = st.radio(label='Quartos', options=['1', '2', '3', '4', '+5'], horizontal=True)
-        st.session_state['vagas'] = st.radio(label='Vagas', options=['1', '2', '3', '4', '+5'], horizontal=True)
-        st.session_state['bairro'] = st.selectbox(label='Bairro:',
-                                                  options=['Canto do Forte', 'Boqueirão', 'Guilhermina', 'Aviação',
-                                                           'Tupi', 'Ocian', 'Mirim', 'Sítio do Campo'])
-
-        # Formas de pagamento
-        st.session_state['permuta'] = st.checkbox('Permuta')
-        st.session_state['vista'] = st.checkbox('À vista')
-        st.session_state['financiamento'] = st.checkbox('Financiamento bancário')
-
-        submitted = st.form_submit_button('Enviar')
-
-        if submitted:
-            enviar_email()  # Chame a função de envio de e-mail após o envio do formulário
-
-
 def enviar_email():
     # Extraia as informações do st.session_state para o corpo do e-mail
     nome = st.session_state.get('nome', '')
@@ -89,3 +60,29 @@ def enviar_email():
         st.success("E-mail enviado com sucesso!")
     except Exception as e:
         st.error(f"Erro ao enviar e-mail: {e}")
+def page_form():
+    st.header('Informação sobre outros imóveis', divider='grey')
+    form = st.form(key='form', clear_on_submit=True)
+
+    with form:
+        st.session_state['nome'] = st.text_input(label='Nome', placeholder='Nome')
+        st.session_state['telefone'] = st.text_input(label='Telefone', placeholder='Telefone')
+
+        # Salve os dados no st.session_state conforme são preenchidos
+        st.session_state['apto'] = st.checkbox('Apartamento')
+        st.session_state['casa'] = st.checkbox('Casa')
+        st.session_state['quartos'] = st.radio(label='Quartos', options=['1', '2', '3', '4', '+5'], horizontal=True)
+        st.session_state['vagas'] = st.radio(label='Vagas', options=['1', '2', '3', '4', '+5'], horizontal=True)
+        st.session_state['bairro'] = st.selectbox(label='Bairro:',
+                                                  options=['Canto do Forte', 'Boqueirão', 'Guilhermina', 'Aviação',
+                                                           'Tupi', 'Ocian', 'Mirim', 'Sítio do Campo'])
+
+        # Formas de pagamento
+        st.session_state['permuta'] = st.checkbox('Permuta')
+        st.session_state['vista'] = st.checkbox('À vista')
+        st.session_state['financiamento'] = st.checkbox('Financiamento bancário')
+
+        submitted = st.form_submit_button('Enviar')
+
+        if submitted:
+            enviar_email()  # Chame a função de envio de e-mail após o envio do formulário

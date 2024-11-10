@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="915cc3a8-9001-46f8-b0d6-199d095ad337" name="Changes" comment="" />
+    <list default="true" id="915cc3a8-9001-46f8-b0d6-199d095ad337" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/funcao.py" beforeDir="false" afterPath="$PROJECT_DIR$/funcao.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +43,7 @@
     "git-widget-placeholder": "master"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.funcao">
+  <component name="RunManager" selected="Python.main">
     <configuration name="funcao" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="site imoveis" />
       <option name="ENV_FILES" value="" />
