@@ -3,6 +3,7 @@ import webbrowser
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import os
 
 
 def page_init():
@@ -33,23 +34,23 @@ def enviar_email():
     financiamento = st.session_state.get('financiamento', False)
 
     # Configurações de e-mail
-    sender_email = "jucarlos.jv@gmail.com"
-    receiver_email = "jucarlos.jv@gmail.com"
-    password = "qdhq khui gfuz hhci"
+    sender_email = os.getenv("SENDER_EMAIL")
+    receiver_email = os.getenv("RECEIVER_EMAIL")
+    password = os.getenv("EMAIL_PASSWORD")
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
     msg['To'] = receiver_email
     msg['Subject'] = "Novo formulário preenchido"
     mensagem = f"""\
-        Nome: {nome}
-        Telefone: {telefone}
-        Tipo: {'Apartamento' if apto else 'Casa' if casa else 'Não informado'}
-        Quartos: {quartos}
-        Vagas: {vagas}
-        Bairro: {bairro}
-        Pagamento: {'Permuta' if permuta else 'À vista' if vista else 'Financiamento' if financiamento else 'Não informado'}
-    """
+            Nome: {nome}
+            Telefone: {telefone}
+            Tipo: {'Apartamento' if apto else 'Casa' if casa else 'Não informado'}
+            Quartos: {quartos}
+            Vagas: {vagas}
+            Bairro: {bairro}
+            Pagamento: {'Permuta' if permuta else 'À vista' if vista else 'Financiamento' if financiamento else 'Não informado'}
+        """
     msg.attach(MIMEText(mensagem, 'plain'))
 
     # Enviar o e-mail
@@ -60,29 +61,41 @@ def enviar_email():
         st.success("E-mail enviado com sucesso!")
     except Exception as e:
         st.error(f"Erro ao enviar e-mail: {e}")
+
+
 def page_form():
     st.header('Informação sobre outros imóveis', divider='grey')
     form = st.form(key='form', clear_on_submit=True)
 
+    # Use valores padrão diretamente nos widgets, sem st.session_state
     with form:
-        st.session_state['nome'] = st.text_input(label='Nome', placeholder='Nome')
-        st.session_state['telefone'] = st.text_input(label='Telefone', placeholder='Telefone')
+        nome = st.text_input(label='Nome', placeholder='Nome')
+        telefone = st.text_input(label='Telefone', placeholder='Telefone')
 
-        # Salve os dados no st.session_state conforme são preenchidos
-        st.session_state['apto'] = st.checkbox('Apartamento')
-        st.session_state['casa'] = st.checkbox('Casa')
-        st.session_state['quartos'] = st.radio(label='Quartos', options=['1', '2', '3', '4', '+5'], horizontal=True)
-        st.session_state['vagas'] = st.radio(label='Vagas', options=['1', '2', '3', '4', '+5'], horizontal=True)
-        st.session_state['bairro'] = st.selectbox(label='Bairro:',
-                                                  options=['Canto do Forte', 'Boqueirão', 'Guilhermina', 'Aviação',
-                                                           'Tupi', 'Ocian', 'Mirim', 'Sítio do Campo'])
+        apto = st.checkbox('Apartamento')
+        casa = st.checkbox('Casa')
+        quartos = st.radio(label='Quartos', options=['1', '2', '3', '4', '+5'], horizontal=True)
+        vagas = st.radio(label='Vagas', options=['1', '2', '3', '4', '+5'], horizontal=True)
+        bairro = st.selectbox(label='Bairro:',
+                              options=['Canto do Forte', 'Boqueirão', 'Guilhermina', 'Aviação',
+                                       'Tupi', 'Ocian', 'Mirim', 'Sítio do Campo'])
 
-        # Formas de pagamento
-        st.session_state['permuta'] = st.checkbox('Permuta')
-        st.session_state['vista'] = st.checkbox('À vista')
-        st.session_state['financiamento'] = st.checkbox('Financiamento bancário')
+        permuta = st.checkbox('Permuta')
+        vista = st.checkbox('À vista')
+        financiamento = st.checkbox('Financiamento bancário')
 
         submitted = st.form_submit_button('Enviar')
 
+        # Após o envio do formulário, armazene os valores no session_state
         if submitted:
+            st.session_state['nome'] = nome
+            st.session_state['telefone'] = telefone
+            st.session_state['apto'] = apto
+            st.session_state['casa'] = casa
+            st.session_state['quartos'] = quartos
+            st.session_state['vagas'] = vagas
+            st.session_state['bairro'] = bairro
+            st.session_state['permuta'] = permuta
+            st.session_state['vista'] = vista
+            st.session_state['financiamento'] = financiamento
             enviar_email()  # Chame a função de envio de e-mail após o envio do formulário
